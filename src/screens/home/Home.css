@@ -1,0 +1,39 @@
+.secondary-header{
+    background-color: #ff9999;
+    padding: 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.gridlist-container .upcominglist{
+    overflow-x: auto;
+    flex-wrap: nowrap;
+}
+
+.gridlist-filter-container{
+    display: flex;
+}
+
+.gridlist-released{
+    /* width: 76%; */
+    flex-basis: 76%;
+    flex-shrink: 1;
+    flex-grow: 1;
+    margin: 16px;
+}
+
+.filter-container{
+    /* width: 24%; */
+    flex-basis: 24%;
+    flex-shrink: 1;
+    flex-grow: 1;
+    margin: 16px;
+}
+
+.grid-list-tile{
+    cursor: pointer;
+}
+
+.body-container{
+    overflow-x: hidden;
+}

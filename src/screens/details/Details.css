@@ -1,0 +1,26 @@
+.body-container{
+}
+
+.navigate-back {
+    margin-left: 24px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.detail-container{
+    display: flex;
+}
+
+.poster-container, .artist-container{
+    flex-basis: 20%;
+}
+
+.trailer-container{
+    flex-basis: 60%;
+}
+
+.movie-trailer{
+    margin-top: 16px;
+}
