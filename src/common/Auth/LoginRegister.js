@@ -5,6 +5,7 @@ import Modal from "react-modal";
 
 import LoginForm from "./Login/LoginForm";
 import RegisterForm from "./Register/RegisterForm";
+import './LoginRegister.css'
 
 export default function LoginRegister(props) {
 
@@ -34,16 +35,19 @@ export default function LoginRegister(props) {
 
 
     return (
-        <Fragment>
-            <Modal isOpen={props.modalState}>
-                <Tabs value={tabSelected}
-                    onChange={tabSelectedhandler}
-                    centered>
-                    <Tab label="Login" value={0} />
-                    <Tab label="Register" value={1} />
-                </Tabs>
-                <DisplayTabContent />                
-            </Modal>
+        <Fragment>                           
+            <Modal isOpen={props.modalState} id="modal-container" centered>
+                    <div className="modal-content">
+                        <div className="close-btn" onClick={() => props.modalHandler(false, false)}>X</div>
+                        <Tabs value={tabSelected}
+                            onChange={tabSelectedhandler}
+                            centered>
+                            <Tab label="Login" value={0} />
+                            <Tab label="Register" value={1} />
+                        </Tabs>
+                        <DisplayTabContent className="form-container"/>          
+                    </div>      
+                </Modal>                        
         </Fragment>
     );
 }

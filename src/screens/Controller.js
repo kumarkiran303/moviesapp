@@ -7,33 +7,21 @@ import Header from "../common/header/Header";
 import BookShow from "../screens/bookshow/BookShow";
 import Confirmation from "../screens/confirmation/Confirmation";
 import history from "../common/history";
-import MovieListContext from "./MovieListContext";
-import MovieListReducer from "./MovieListReducer";
+import authContext from "./authContext";
+import AuthReducer from "./AuthReducer";
 
 const Controller = () => {
   const baseUrl = "/api/v1/";
-
-  const [movies, setMovies] = useState([]);
-  const [state, dispatch] = useReducer(MovieListReducer, {movies:[]});
-
-  async function loadMovies(){
-    const rawResponse = await fetch(`${baseUrl}movies`,{
-      method:"GET"
-    });
-
-    const input = await rawResponse.json();
-    setMovies(input.movies);
-    dispatch({"type":"updateMovies", payLoad:input.movies})
-  }  
-
-  useEffect(() => {
-    loadMovies();
-  }, []);
+  
+  const [authenticated, setAuthenticated] = useState(false); 
+  // const [state, dispatch] = useReducer(AuthReducer, {isLoggedIn:false}); 
 
   return (
     <Fragment>     
-      <MovieListContext.Provider value={state.movies}>
-        <Router history={history}>        
+      <authContext.Provider value={{authenticated, setAuthenticated}}>
+        <Router 
+           history={history}
+          >        
           <div className="main-container">          
             <Route
               exact path="/"
@@ -53,7 +41,7 @@ const Controller = () => {
             />
           </div>          
         </Router>      
-      </MovieListContext.Provider>
+      </authContext.Provider>
     </Fragment>
   );
 };

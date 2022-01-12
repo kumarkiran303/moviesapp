@@ -1,19 +1,22 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useContext, useState} from "react";
 import { Button } from '@material-ui/core';
 
 import "./Header.css";
 import logoSVG from "../../assets/logo.svg";
 import LoginRegister from "../Auth/LoginRegister";
+import authContext from "../../screens/authContext";
 
 export default function Header(props){
-    const [context, setcontext] = useState({
-        isLoggedIn : false,                
-    });    
+    // const [context, setcontext] = useState({
+    //     isLoggedIn : false,                
+    // });    
+
+    const {authenticated, setAuthenticated} = useContext(authContext);
     
     const [modalState, setModalState] = useState(false);
 
     function bookShowhandler (id){
-        if(!context.isLoggedIn){
+        if(!authenticated){
             return setModalState(true);
         }        
         
@@ -25,15 +28,22 @@ export default function Header(props){
     }
 
     function logOuthandler (){
+        // const contextState = context;
+        // contextState["isLoggedIn"] = false;
+        // setcontext({...contextState});
+        setAuthenticated(false);
+    }
+
+    function modalHandler(modalState, isLoggedIn){        
+        setModalState(modalState);
+           // const contextState = context;
+            // contextState["isLoggedIn"] = true;
+            // setcontext({...contextState});
+            setAuthenticated(isLoggedIn);            
         
     }
 
-    function modalHandler(modalState){        
-        setModalState(modalState);
-        const contextState = context;
-        contextState["isLoggedIn"] = true;
-        setcontext({...contextState});
-    }
+    console.log(props.canBookShow);
 
     return(      
         <Fragment>
@@ -45,7 +55,7 @@ export default function Header(props){
                         ""
                     }
                     
-                    {(context.isLoggedIn) ?                         
+                    {(authenticated) ?                         
                         <Button variant="contained" className="custom-btn" onClick={() => logOuthandler()}>Logout</Button>:
                         <Button variant="contained" className="custom-btn" onClick={() => logInhandler()}>Login</Button> 
                     }                

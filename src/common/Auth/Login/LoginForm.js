@@ -1,5 +1,6 @@
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import React, { useState } from "react";
+import "./LoginForm.css"
 
 export default function LoginForm(props){
 
@@ -32,7 +33,7 @@ export default function LoginForm(props){
             const result = await rawResponse.json();
 
             if(rawResponse.ok){                
-                props.modalHandler(false);
+                props.modalHandler(false, true);
             }
             else{
                 const error = new Error();
@@ -46,15 +47,17 @@ export default function LoginForm(props){
     return(
         <div className="form-container">
             <form className="login-form" onSubmit={loginHandler}>
-                <FormControl>
+                <FormControl className="form-control">
                     <InputLabel htmlFor="userName">UserName*</InputLabel>
                     <Input required id="userName" type="text" name="user_name" value={loginForm.user_name} onChange={inputChangeHandler}/>
                 </FormControl><br/><br/>
-                <FormControl>
+                <FormControl className="form-control">
                     <InputLabel htmlFor="password">Password*</InputLabel>
                     <Input required id="password" type="password" name="password" value={loginForm.password} onChange={inputChangeHandler}/>
-                </FormControl><br/><br/>                                
-                <Button type="submit" variant="contained" className="custom-btn" color="primary">Login</Button>
+                </FormControl><br/><br/>  
+                <div style={{"display":"flex"}}>
+                    <Button id="login-btn" type="submit" variant="contained" className="custom-btn" color="primary">Login</Button>
+                </div>                              
             </form>            
         </div>
     );

@@ -15,12 +15,32 @@
 
 .poster-container, .artist-container{
     flex-basis: 20%;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+ 
+.body-container .navigate-back{
+    margin-left: 24px;
+    margin-top: 8px;
+    height: 24px;
 }
 
 .trailer-container{
     flex-basis: 60%;
 }
 
+.artist-grid img{
+    max-height: 200px;
+}
+
 .movie-trailer{
+    width: 100%;
+}
+
+.no-text-decor{
+    text-decoration: none;
+}
+
+.story-line{
     margin-top: 16px;
 }

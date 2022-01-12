@@ -1,3 +1,14 @@
 .filter-card *{
     margin: "theme.spacing.unit";
 }
+
+.formControl, .filter-btn{
+    width: 240px;
+}
+
+
+
+/* .filter-card{
+    max-width: 240px;
+    min-width: 240px;
+} */

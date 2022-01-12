@@ -16,6 +16,7 @@ export default function Details(props){
         0,
         false
     );
+    const dateOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'};
     
     const [movie, userRating, canBookShow] = [context.movie, context.userRating, context.canBookShow];
 
@@ -49,55 +50,55 @@ export default function Details(props){
     return(
         <Fragment>
             <Header baseUrl={props.baseUrl} canBookShow={canBookShow} movieId={id} history={props.history}></Header>
-            <div className="body-container">
-                <Link to='/'><Typography className="navigate-back"><ArrowBackIosIcon fontSize="small"/>Back to Home</Typography></Link>
-                <div className="detail-container">
-                    <div className="poster-container">
+            <div className="body-container">          
+                <Typography className="navigate-back"><Link to='/'>&#60; Back to Home</Link></Typography>                      
+                <div className="detail-container">                        
+                    <div className="poster-container">                    
                         <img src={movie && movie.poster_url}></img>                                            
                     </div>
                     <div className="trailer-container">
                         <Typography variant="h2">{movie && movie.title}</Typography>   
-                        <Typography>                    
-                            <Typography variant="subtitle2" inline>Genres:</Typography>
+                        <div>                    
+                            <Typography variant="subtitle2" inline>Genres: </Typography>
                             <Typography variant="body1" inline>{
                                 movie && movie.genres && movie.genres.join(", ")                        
                              }
                             </Typography>   
-                        </Typography>
-                        <Typography>
-                            <Typography variant="subtitle2" inline>Duration:</Typography>  
+                        </div>
+                        <div>
+                            <Typography variant="subtitle2" inline>Duration: </Typography>  
                             <Typography variant="body1" inline>{movie && movie.duration}</Typography> 
-                        </Typography>
-                        <Typography>
-                            <Typography variant="subtitle2" inline>Release Date:</Typography>  
-                            <Typography variant="body1" inline>{movie && movie.release_date}</Typography>                            
-                        </Typography>
-                        <Typography>
-                            <Typography variant="subtitle2" inline>Rating:</Typography>  
+                        </div>
+                        <div>
+                            <Typography variant="subtitle2" inline>Release Date: </Typography>  
+                            <Typography variant="body1" inline>{movie && new Date(movie.release_date).toLocaleDateString('en-IN', dateOptions)}</Typography>                            
+                        </div>
+                        <div>
+                            <Typography variant="subtitle2" inline>Rating: </Typography>  
                             <Typography variant="body1" inline>{movie && movie.rating}</Typography>                            
-                        </Typography><br/>
-                        <Typography>
-                            <Typography variant="subtitle2" inline>Plot:</Typography>  
-                            <Typography variant="body1" component="a" target="_blank" href={movie && movie.wiki_url} inline>(Wiki Link)</Typography>                            
+                        </div>
+                        <div className="story-line">
+                            <Typography variant="subtitle2" inline>Plot: </Typography>  
+                            <Typography variant="body1" component="a" target="_blank" href={movie && movie.wiki_url} inline className="no-text-decor">(Wiki Link)</Typography>                            
                             <Typography variant="body1" inline>{movie && movie.storyline}</Typography>                            
-                        </Typography><br/>
-                        <Typography>
+                        </div><br/>
+                        <div>
                             <Typography variant="subtitle2">Trailer:</Typography>   
                             <YouTube className="movie-trailer" videoId={movie && movie.trailer_url && movie.trailer_url.split("v=")[1].split("&")[0]}></YouTube>                           
-                        </Typography>
+                        </div>
                     </div>
                     <div className="artist-container">
                         <Typography variant="h5">Rate this movie:</Typography>
                         {
                             [...Array(5).keys()].map( (key, index) => {
-                                return <StarBorderIcon style={userRating > index ? {color: yellow[500]}:{}} value={index + 1} onClick={() => startClickHandler(index+1)}></StarBorderIcon>
+                                return <StarBorderIcon key={index} style={userRating > index ? {color: yellow[500]}:{}} value={index + 1} onClick={() => startClickHandler(index+1)}></StarBorderIcon>
                             })
                         }      
-                        <TextField type="text" value="Artists:" style={{"margin": "16px 0px"}}></TextField>
+                        <TextField value="Artists:" style={{"margin": "16px 0px", "border" : "none"}}></TextField>
                         <div className="gridlist-container gridlist-artists">
                             <GridList className="releasedlist" cols={2}>
                                 {movie && movie.artists && movie.artists.map(artist => {
-                                    return (<GridListTile className="grid-list-tile" key={artist.id}>
+                                    return (<GridListTile className="grid-list-tile  artist-grid" key={artist.id}>
                                         <img src={artist.profile_url} />
                                         <GridListTileBar
                                             title={artist.first_name + " " + artist.last_name}                                            
@@ -106,7 +107,7 @@ export default function Details(props){
                                     )
                                 })}
                             </GridList>
-                        </div>                    
+                        </div>                                          
                     </div>
                                     
                 </div>

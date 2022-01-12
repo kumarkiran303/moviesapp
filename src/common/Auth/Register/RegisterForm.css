@@ -1,0 +1,23 @@
+.red{
+    color: red;
+}
+
+.displayNone{
+    display: none;
+}
+
+.displayBlock{
+    display: block;
+}
+
+.form-control{
+    width: 200px;
+}
+
+.form-container{
+    max-width: 350px;
+}
+
+#register-btn{    
+    margin: auto auto;
+}

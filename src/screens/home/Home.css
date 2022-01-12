@@ -10,6 +10,10 @@
     flex-wrap: nowrap;
 }
 
+.gridlist-upcoming{
+    margin-top: 5px;
+}
+
 .gridlist-filter-container{
     display: flex;
 }

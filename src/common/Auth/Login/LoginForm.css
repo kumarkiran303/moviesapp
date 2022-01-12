@@ -1,0 +1,11 @@
+.form-control{
+    width: 200px;
+}
+
+.form-container{
+    max-width: 350px;
+}
+
+#login-btn{    
+    margin: auto auto;
+}
